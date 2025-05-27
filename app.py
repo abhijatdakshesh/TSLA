@@ -414,13 +414,18 @@ def show_chart_and_chatbot():
     # Chart animation loop
     chart_container = st.container()
     chart_placeholder = st.empty()
+    import time as _time  # Avoid conflict with already imported time
+    start_time = _time.time()
     try:
         for i in range(len(data) - window_size):
+            # Stop animation after 10 seconds
+            if _time.time() - start_time > 10:
+                break
             data_window = data.iloc[i:i + window_size]
             fig = create_figure(data_window)
             with chart_container:
                 chart_placeholder.plotly_chart(fig, use_container_width=True)
-            time.sleep(animation_speed)
+            _time.sleep(animation_speed)
             # Stop animation if user navigates away
             if st.session_state.get('page') != 'Dashboard':
                 break
