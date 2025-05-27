@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
-import plotly
-import plotly.graph_objects as go
+import plotly.graph_objs as go
 import time
 import numpy as np
 import ast
